@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">>
+<head>
+    <meta charset="UTF-8">
+    <title>PokeChat-Rejestracja</title>
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <!--<meta http-equiv="Refresh" content="3"/>-->
+</head>
+<body>
+<header>
+    <div class="header">
+        <p>PokeChat</p>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="containter">
+            <div class="logdiv">
+                <form  th:action="@{/register}" method="post" th:object="${registerForm}">
+                    <input type="text" th:field="*{name}" placeholder="Nazwa użytkownika" required/>
+                    <input type="password" th:field="*{password}" placeholder="Hasło" required/>
+                    <input type="password" th:field="*{repeatPassword}" placeholder="Powtórz hasło" required/>
+                    <input type="text" th:field="*{city}" placeholder="Miasto" required/>
+                    <input type="number" th:field="*{age}" placeholder="Wiek" required/>
+                    <input type="number" th:field="*{lvl}" placeholder="Poziom gracza" />
+                    <button type="submit">Zarejestruj</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

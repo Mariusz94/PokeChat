@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>PokeChat</title>
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+    <div class="header">
+        <p>PokeChat</p>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="containter">
+            <div class="logdiv">
+                <form th:action="@{/login}" method="post" th:object="${userModel}">
+                    <input type="text" th:field="*{name}" placeholder="Nazwa użytkownika"/>
+                    <input type="password" th:field="*{password}" placeholder="Hasło"/>
+                    <button type="submit">Zaloguj</button>
+                    <button type="button" onclick="window.location.href='register.html'">Zarejestruj</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
