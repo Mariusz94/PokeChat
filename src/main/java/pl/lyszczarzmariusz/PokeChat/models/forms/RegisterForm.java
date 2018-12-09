@@ -9,6 +9,7 @@ public class RegisterForm {
     String name;
     String password;
     String repeatPassword;
+    String team;
     int age;
     String city;
     int lvl;

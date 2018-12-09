@@ -16,6 +16,7 @@ public class UserModel {
     int id;
     String name;
     String password;
+    String team;
     int age;
     String city;
     int lvl;

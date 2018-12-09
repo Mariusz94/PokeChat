@@ -5,18 +5,20 @@
     <title>PokeChat</title>
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link type="text/css" rel="stylesheet" href="styleMain.css"/>
 
 </head>
 <body>
+
 <section>
 
     <header>
-        <div style="padding-left: 200px">
+
+        <div class="infoLog">
             <span th:if="${user != null}"
-                  th:text="${user.get().getName() + ' : ' + user.get().getAge() + 'lat : ' + user.get().getCreationTime()}"></span>
+                  th:text="${'Witaj, ' + user.get().getName()}"></span>
             <a th:if="${user != null}" th:href="${'/logout'}">Wyloguj się</a>
             <a th:unless="${user != null}" th:href="${'/login'}">Zaloguj się</a>
-            <a href="#">ala</a>
         </div>
         <div>
             <div class="header">
@@ -26,14 +28,14 @@
         <nav>
             <div class="navSpace">
                 <ol>
-                    <li><a href="#">Wybór miasta</a>
-                        <ul>
+                    <li><a th:href="${'/cities'}">Wybór miasta</a>
+                        <!--<ul>
                             <li><a href="#">Kraków</a></li>
                             <li><a href="#">Warszawa</a></li>
                             <li><a href="#">Wrocław</a></li>
                             <li><a href="#">Poznań</a></li>
                             <li><a href="#">Katowice</a></li>
-                        </ul>
+                        </ul>-->
                     </li>
                     <li><a href="#">Eventy</a></li>
                     <li><a href="#">Raid Boss</a></li>

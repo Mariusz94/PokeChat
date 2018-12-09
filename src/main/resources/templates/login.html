@@ -17,7 +17,7 @@
         <div class="containter">
             <div class="logdiv">
                 <form th:action="@{/login}" method="post" th:object="${userModel}">
-                    <input type="text" th:field="*{name}" placeholder="Nazwa użytkownika"/>
+                    <input type="text" th:field="*{name}" placeholder="Nazwa użytkownika" autofocus/>
                     <input type="password" th:field="*{password}" placeholder="Hasło"/>
                     <button type="submit">Zaloguj</button>
                     <button type="button" onclick="window.location.href='register.html'">Zarejestruj</button>

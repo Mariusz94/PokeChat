@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "districts")
+@Table(name = "district")
 @Data
 @NoArgsConstructor
-public class DistrictsModel {
+public class DistrictModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;

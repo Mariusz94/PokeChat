@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>PokeChat</title>
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link type="text/css" rel="stylesheet" href="styleMain.css"/>
+
+</head>
+<body>
+
+<section>
+
+    <header>
+
+        <div class="infoLog">
+            <span th:if="${user != null}"
+                  th:text="${'Witaj, ' + user.get().getName()}"></span>
+            <a th:if="${user != null}" th:href="${'/logout'}">Wyloguj się</a>
+            <a th:unless="${user != null}" th:href="${'/login'}">Zaloguj się</a>
+        </div>
+        <div>
+            <div class="header">
+                <p>PokeChat</p>
+            </div>
+        </div>
+        <nav>
+            <div class="navSpace">
+                <ol>
+                    <li><a href="#">Wybór miasta</a>
+                        <!--<ul>
+                            <li><a href="#">Kraków</a></li>
+                            <li><a href="#">Warszawa</a></li>
+                            <li><a href="#">Wrocław</a></li>
+                            <li><a href="#">Poznań</a></li>
+                            <li><a href="#">Katowice</a></li>
+                        </ul>-->
+                    </li>
+                    <li><a href="#">Eventy</a></li>
+                    <li><a href="#">Raid Boss</a></li>
+                    <li><a href="#">Jajka</a></li>
+                    <li><a href="#">Przyjaciele</a></li>
+                    <li><a href="#">Ulepszenie strony</a></li>
+                    <li><a href="#">O autorach</a></li>
+                </ol>
+            </div>
+        </nav>
+    </header>
+</section>
+<main class="containter">
+    <nav>
+        <div>
+
+        </div>
+    </nav>
+    <section>
+        <article>
+            <div>
+
+            <span th:each="city : ${cities}">
+            <a th:href="'/city/' + ${city.escapeDiacritics().toLowerCase()}" th:text="${city.getCity()}"></a>
+                <br />
+            </span>
+
+            </div>
+        </article>
+    </section>
+</main>
+
+<script src="jquery-3.3.1.min.js"></script>
+<script src="navbar.js"></script>
+
+</body>
+</html>
