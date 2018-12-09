@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.lyszczarzmariusz.PokeChat.models.UserModel;
 import pl.lyszczarzmariusz.PokeChat.models.forms.RegisterForm;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.UserRepository;
+import pl.lyszczarzmariusz.PokeChat.models.services.UserService;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.Optional;
 
 @Controller
@@ -18,18 +20,24 @@ public class MainController {
     final
     UserRepository userRepository;
 
+    final
+    UserService userService;
+
     @Autowired
-    public MainController(UserRepository userRepository) {
+    public MainController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/")
-    public String indexGet(){
+    public String indexGet(Model model){
+        model.addAttribute("user", userService.getUser());
         return "main";
     }
 
     @GetMapping("/login")
     public String loginGet(Model model){
+
         model.addAttribute("userModel", new UserModel());
         return "login";
     }
@@ -38,6 +46,7 @@ public class MainController {
     public String loginPost(UserModel userModel){
     Optional<UserModel> user = userRepository.findByNameAndPassword(userModel.getName(),userModel.getPassword());
     if(user.isPresent()){
+        userService.setUser(user);
         return "redirect:/";
     }
         return "login";
@@ -65,6 +74,12 @@ public class MainController {
         userModel.setCity(registerForm.getCity());
         userModel.setLvl(registerForm.getLvl());
         userRepository.save(userModel);
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logoutGet(){
+        userService.setUser(null);
         return "redirect:/";
     }
 }

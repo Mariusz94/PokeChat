@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>PokeChat</title>
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="style.css"/>
+
 </head>
 <body>
 <section>
+
     <header>
+        <div style="padding-left: 200px">
+            <span th:if="${user != null}"
+                  th:text="${user.get().getName() + ' : ' + user.get().getAge() + 'lat : ' + user.get().getCreationTime()}"></span>
+            <a th:if="${user != null}" th:href="${'/logout'}">Wyloguj się</a>
+            <a th:unless="${user != null}" th:href="${'/login'}">Zaloguj się</a>
+            <a href="#">ala</a>
+        </div>
         <div>
             <div class="header">
                 <p>PokeChat</p>
@@ -46,6 +55,7 @@
     <section>
         <article>
             <div>
+
                 <p>Lorem ipsum dolor sit amet tellus. Quisque vehicula enim eu justo. Suspendisse nec augue. Sed
                     placerat. Vivamus nec mauris. Etiam lobortis mauris nec massa imperdiet vel, consequat tortor. Cum
                     sociis natoque penatibus et ultrices nulla. Mauris vel sodales rutrum, lorem eget sapien faucibus
