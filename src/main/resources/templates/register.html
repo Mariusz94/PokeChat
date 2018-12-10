@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org/">>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>PokeChat-Rejestracja</title>
@@ -17,16 +17,54 @@
     <section>
         <div class="containter">
             <div class="logdiv">
+                <span th:tekst="BadPassword"></span>
+                <span th:tekst="NameBusy"></span>
+                <table>
                 <form  th:action="@{/register}" method="post" th:object="${registerForm}">
-                    <input type="text" th:field="*{name}" placeholder="Nazwa użytkownika" required/>
-                    <input type="password" th:field="*{password}" placeholder="Hasło" required/>
-                    <input type="password" th:field="*{repeatPassword}" placeholder="Powtórz hasło" required/>
-                    <input type="text" th:field="*{team}" placeholder="Zespół" required/>
-                    <input type="text" th:field="*{city}" placeholder="Miasto" required/>
-                    <input type="number" th:field="*{age}" placeholder="Wiek" required/>
-                    <input type="number" th:field="*{lvl}" placeholder="Poziom gracza" />
-                    <button type="submit">Zarejestruj</button>
+                    <tr>
+                        <td>Nazwa</td>
+                        <td><input type="text" th:field="*{name}" required/></td>
+                        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td>Hasło</td>
+                        <td><input type="password" th:field="*{password}" required/></td>
+                        <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td>Powtórz hasło</td>
+                        <td><input type="password" th:field="*{repeatPassword}" required/></td>
+                        <td th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td>Zespół</td>
+                        <td><select th:field="*{team}" required>
+                            <option style="color: red" th:value="Valor">Valor</option>
+                            <option style="color: blue" th:value="Mystic">Mystic</option>
+                            <option style="color: yellow" th:value="Instinct">Instinct</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Miasto</td>
+                        <td><input type="text" th:field="*{city}" required/></td>
+                        <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td>Wiek</td>
+                        <td><input type="number" th:field="*{age}" required/></td>
+                        <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td>Poziom gracza</td>
+                        <td><input type="number" th:field="*{lvl}" /></td>
+                        <td th:if="${#fields.hasErrors('lvl')}" th:errors="*{lvl}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Zarejestruj</button></td>
+                    </tr>
+
                 </form>
+                </table>
             </div>
         </div>
     </section>

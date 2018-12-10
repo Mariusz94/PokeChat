@@ -49,6 +49,6 @@ public class MainController {
     public String cityGet(@PathVariable("city") String city,
                           Model model){
         model.addAttribute("districts", districtRepository.findAllByCity(city));
-        return "cities";
+        return "city";
     }
 }

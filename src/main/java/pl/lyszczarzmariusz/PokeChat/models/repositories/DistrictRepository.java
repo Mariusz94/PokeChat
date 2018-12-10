@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DistrictRepository extends CrudRepository<DistrictModel, Integer> {
     List<DistrictModel> findAllByCity(String city);
+
 }

@@ -59,7 +59,7 @@
             <div>
 
             <span th:each="district : ${districts}">
-            <a th:href="'/district/' + ${district.getDistricts()}" th:text="$district.getDistricts()}"></a>
+            <a th:href="'/district/' + ${district.getDistrict()}" th:text="${district.getDistrict()}"></a>
                 <br />
             </span>
 

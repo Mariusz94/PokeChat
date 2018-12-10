@@ -14,5 +14,5 @@ public class DistrictModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     String city;
-    String districts;
+    String district;
 }
