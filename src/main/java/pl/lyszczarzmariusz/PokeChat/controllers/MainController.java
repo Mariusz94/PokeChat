@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import pl.lyszczarzmariusz.PokeChat.models.CityModel;
+import pl.lyszczarzmariusz.PokeChat.models.DistrictModel;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.CityRepository;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.DistrictRepository;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.RaidRepository;
@@ -47,16 +51,46 @@ public class MainController {
     }
 
     @GetMapping("/cities")
-    public String cityGet(Model model) {
+    public String citiesGet(Model model) {
         model.addAttribute("cities", cityRepository.findAll());
+        model.addAttribute("addCity",new CityModel());
         return "cities";
+    }
+
+    @PostMapping("/cities")
+    public String citiesPost(@ModelAttribute("addCity")CityModel cityModel,
+                             Model model){
+        if (userService.getUser()== null){
+            model.addAttribute("info", "Musisz być zalogowany aby móc dodawać miasta");
+            return "cities";
+        }
+        cityModel.setCityEdLc(cityModel.escapeDiacritics().toLowerCase());
+        cityRepository.save(cityModel);
+        return "redirect:/cities";
     }
 
     @GetMapping("/city/{city}")
     public String cityGet(@PathVariable("city") String city,
                           Model model) {
         model.addAttribute("districts", districtRepository.findAllByCity(city));
+        model.addAttribute("city", city);
+        model.addAttribute("addDistrict", new DistrictModel());
         return "city";
+    }
+
+    @PostMapping("/city/{city}")
+    public String cityPost(@PathVariable("city") String city,
+                          @ModelAttribute("addDistrict") DistrictModel districtModel,
+                          Model model) {
+        if (userService.getUser()== null){
+            model.addAttribute("info", "Musisz być zalogowany aby móc dodawać dzielnice");
+            return "city";
+        }
+        districtModel.setDistrictEdLc(districtModel.escapeDiacritics().toLowerCase());
+        districtModel.setCity(city);
+        districtRepository.save(districtModel);
+
+        return "redirect:/city/" + city;
     }
 
     @GetMapping("/district/{district}")

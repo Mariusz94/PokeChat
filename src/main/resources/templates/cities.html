@@ -60,8 +60,14 @@
 
             <span th:each="city : ${cities}">
             <a th:href="'/city/' + ${city.escapeDiacritics().toLowerCase()}" th:text="${city.getCity()}"></a>
-                <br />
+                <br/>
             </span>
+                <br/><br/>
+                <p th:if="${info != null}" th:text="${info}"></p>
+                <form th:action="@{/cities}" method="post" th:object="${addCity}">
+                    <input type="text" th:field="*{city}" placeholder="Dodaj miasto"/>
+                    <button type="submit">Dodaj</button>
+                </form>
 
             </div>
         </article>

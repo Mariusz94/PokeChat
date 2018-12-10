@@ -45,6 +45,7 @@ public class RegisterForm {
                 .replace("ó", "o").replace("Ó", "O")
                 .replace("ś", "s").replace("Ś", "S")
                 .replace("ż", "z").replace("Ż", "Z")
-                .replace("ź", "z").replace("Ź", "Z");
+                .replace("ź", "z").replace("Ź", "Z")
+                .replace(" ", "-");
     }
 }

@@ -58,10 +58,17 @@
         <article>
             <div>
 
-            <span th:each="district : ${districts}">
-                <a th:href="'/district/' + ${district.getDistrictEdLc()}" th:text="${district.getDistrict()}"></a>
-                <br/>
-            </span>
+                <span th:each="district : ${districts}">
+                    <a th:href="'/district/' + ${district.getDistrictEdLc()}" th:text="${district.getDistrict()}"></a>
+                    <br/>
+                </span>
+
+                <br/><br/>
+                <p th:if="${info != null}" th:text="${info}"></p>
+                <form th:action="@{'/city/' + ${city}}" method="post" th:object="${addDistrict}">
+                    <input type="text" th:field="*{district}" placeholder="Dodaj dzielnice"/>
+                    <button type="submit">Dodaj</button>
+                </form>
 
             </div>
         </article>
