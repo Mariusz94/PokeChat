@@ -58,10 +58,7 @@
         <article>
             <div>
 
-            <span th:each="raid : ${raids}">
-                <a th:href="'/raid/' + ${raid.getId()}" th:text="${raid.getNameBoss()}"></a>
-                <br/>
-            </span>
+                <p th:text="${raid.toString()}"></p>
 
             </div>
         </article>

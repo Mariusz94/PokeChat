@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String name;
-    String password;
-    String team;
+    private int id;
+    private String name;
+    private String password;
+    private String team;
     @Column(name = "year_birth")
-    int yearOfBirth;
-    String city;
-    int lvl;
+    private int yearOfBirth;
+    private String city;
+    private int lvl;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "creation_date")
     private LocalDateTime creationTime;

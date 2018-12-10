@@ -12,9 +12,9 @@ import javax.persistence.*;
 public class DistrictModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String city;
-    String district;
+    private int id;
+    private String city;
+    private String district;
     @Column(name = "district_escape_diacritics_lc")
-    String districtEdLc;
+    private  String districtEdLc;
 }
