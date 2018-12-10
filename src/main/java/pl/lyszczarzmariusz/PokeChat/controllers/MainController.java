@@ -44,14 +44,15 @@ public class MainController {
         this.raidRepository = raidRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("/about")
     public String indexGet(Model model) {
         model.addAttribute("user", userService.getUser());
-        return "main";
+        return "about";
     }
 
     @GetMapping("/cities")
     public String citiesGet(Model model) {
+        model.addAttribute("user", userService.getUser());
         model.addAttribute("cities", cityRepository.findAll());
         model.addAttribute("addCity",new CityModel());
         return "cities";
@@ -72,6 +73,10 @@ public class MainController {
     @GetMapping("/city/{city}")
     public String cityGet(@PathVariable("city") String city,
                           Model model) {
+        if (!cityRepository.existsByCityEdLc(city)){
+            return "redirect:/cities";
+        }
+        model.addAttribute("user", userService.getUser());
         model.addAttribute("districts", districtRepository.findAllByCity(city));
         model.addAttribute("city", city);
         model.addAttribute("addDistrict", new DistrictModel());
@@ -96,6 +101,7 @@ public class MainController {
     @GetMapping("/district/{district}")
     public String districtGet(@PathVariable("district") String district,
                               Model model) {
+        model.addAttribute("user", userService.getUser());
         model.addAttribute("raids", raidRepository.findAllByDistrict(district));
         return "district";
     }
@@ -103,6 +109,7 @@ public class MainController {
     @GetMapping("/raid/{id}")
     public String raidGet(@PathVariable("id") int id,
                           Model model) {
+        model.addAttribute("user", userService.getUser());
         model.addAttribute("raid", raidRepository.findOne(id));
         return "raid";
     }

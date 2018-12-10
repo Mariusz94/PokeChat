@@ -24,4 +24,18 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "creation_date")
     private LocalDateTime creationTime;
+
+    public String escapeDiacritics(){
+
+        return this.getCity().replace("ą", "a").replace("Ą", "A")
+                .replace("ć", "c").replace("Ć", "C")
+                .replace("ę", "e").replace("Ę", "E")
+                .replace("ł", "l").replace("Ł", "L")
+                .replace("ń", "n").replace("Ń", "N")
+                .replace("ó", "o").replace("Ó", "O")
+                .replace("ś", "s").replace("Ś", "S")
+                .replace("ż", "z").replace("Ż", "Z")
+                .replace("ź", "z").replace("Ź", "Z")
+                .replace(" ", "-");
+    }
 }

@@ -52,7 +52,7 @@ public class LogController {
     Optional<UserModel> user = userRepository.findByNameAndPassword(userModel.getName(),Utils.hash256SHA(userModel.getPassword()));
     if(user.isPresent()){
         userService.setUser(user);
-        return "redirect:/";
+        return "redirect:/city/" + userService.getUser().get().escapeDiacritics().toLowerCase();
     }
         return "login";
     }
@@ -93,13 +93,13 @@ public class LogController {
             cityModel.setCityEdLc(registerForm.escapeDiacritics().toLowerCase());
             cityRepository.save(cityModel);
         }
-
-        return "redirect:/";
+        userService.setUser(userRepository.findByNameAndPassword(registerForm.getName(),Utils.hash256SHA(registerForm.getPassword())));
+        return "redirect:/about";
     }
 
     @GetMapping("/logout")
     public String logoutGet(){
         userService.setUser(null);
-        return "redirect:/";
+        return "redirect:/cities";
     }
 }

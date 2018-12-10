@@ -5,4 +5,5 @@ import pl.lyszczarzmariusz.PokeChat.models.CityModel;
 
 public interface CityRepository extends CrudRepository<CityModel, Integer> {
     boolean existsByCity (String city);
+    boolean existsByCityEdLc (String city);
 }
