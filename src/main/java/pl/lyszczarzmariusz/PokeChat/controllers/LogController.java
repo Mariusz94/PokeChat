@@ -70,21 +70,19 @@ public class LogController {
             return "register";
         }
         if(userRepository.existsByName(registerForm.getName())){
+            model.addAttribute("NameBusy", "Nazwa jest zajęta");
             return "register";
         }
         if(!registerForm.getPassword().equals(registerForm.getRepeatPassword())){
-            model.addAttribute("BadPassword", "Password is not the same");
+            model.addAttribute("BadPassword", "Hasła nie są takie same");
             return "register";
         }
-        if(userRepository.existsByName(registerForm.getName())){
-            model.addAttribute("NameBusy", "Name is busy");
-            return "register";
-        }
+
         UserModel userModel = new UserModel();
         userModel.setName(registerForm.getName());
         userModel.setPassword(Utils.hash256SHA(registerForm.getPassword()));
         userModel.setTeam(registerForm.getTeam());
-        userModel.setAge(registerForm.getAge());
+        userModel.setYearOfBirth(registerForm.getYearOfBirth());
         userModel.setCity(registerForm.getCity());
         userModel.setLvl(registerForm.getLvl());
         userRepository.save(userModel);

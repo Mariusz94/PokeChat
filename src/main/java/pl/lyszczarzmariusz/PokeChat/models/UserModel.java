@@ -17,7 +17,8 @@ public class UserModel {
     String name;
     String password;
     String team;
-    int age;
+    @Column(name = "year_birth")
+    int yearOfBirth;
     String city;
     int lvl;
     @GeneratedValue(strategy = GenerationType.AUTO)

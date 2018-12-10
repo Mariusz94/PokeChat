@@ -7,6 +7,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -22,9 +24,9 @@ public class RegisterForm {
     String repeatPassword;
     String team;
     @NotNull
-    @Min(5)
-    @Max(100)
-    int age;
+    @Min(1918)
+    @Max(2018)
+    int yearOfBirth;
     @NotNull
     @Size(min = 3, max = 30)
     String city;
