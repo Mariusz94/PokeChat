@@ -70,6 +70,43 @@
                     <button type="submit">Dodaj</button>
                 </form>-->
 
+                <form  th:action="@{'/district/' + ${district}}" method="post" th:object="${raidForm}">
+                    <table>
+                        <tr>
+                            <td>Miasto</td>
+                            <td><input type="text" th:field="*{city}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Dzielnica</td>
+                            <td><input type="text" th:field="*{district}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Nazwa Gymu</td>
+                            <td><input type="text" th:field="*{nameGym}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Nazwa Bossa</td>
+                            <td><input type="text" th:field="*{nameBoss}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Lvl bossa</td>
+                            <td><input type="text" th:field="*{lvlBoss}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Godzina rozpoczęcia</td>
+                            <td><input type="datetime-local" th:field="*{start}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Godzina zakończenia</td>
+                            <td><input type="datetime-local" th:field="*{end}" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Opis</td>
+                            <td><input type="text" th:field="*{description}" required/></td>
+                        </tr>
+                    </table>
+                </form>
+
             </div>
         </article>
     </section>

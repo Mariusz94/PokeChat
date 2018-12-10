@@ -46,6 +46,11 @@ public class LogController {
         return "login";
     }
 
+    @GetMapping("/")
+    public String mainGet(){
+        return "redirect:/cities";
+    }
+
     @PostMapping("/login")
     public String loginPost(UserModel userModel){
 

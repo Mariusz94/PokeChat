@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.lyszczarzmariusz.PokeChat.models.CityModel;
 import pl.lyszczarzmariusz.PokeChat.models.DistrictModel;
+import pl.lyszczarzmariusz.PokeChat.models.forms.RaidForm;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.CityRepository;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.DistrictRepository;
 import pl.lyszczarzmariusz.PokeChat.models.repositories.RaidRepository;
@@ -65,6 +66,9 @@ public class MainController {
             model.addAttribute("info", "Musisz być zalogowany aby móc dodawać miasta");
             return "cities";
         }
+        if (cityRepository.existsByCity(cityModel.getCity())){
+            return "redirect:/cities";
+        }
         cityModel.setCityEdLc(cityModel.escapeDiacritics().toLowerCase());
         cityRepository.save(cityModel);
         return "redirect:/cities";
@@ -91,18 +95,23 @@ public class MainController {
             model.addAttribute("info", "Musisz być zalogowany aby móc dodawać dzielnice");
             return "city";
         }
+        if (districtRepository.existsByDistrict(districtModel.getDistrict())){
+            return "redirect:/city/" + city;
+        }
         districtModel.setDistrictEdLc(districtModel.escapeDiacritics().toLowerCase());
         districtModel.setCity(city);
         districtRepository.save(districtModel);
 
         return "redirect:/city/" + city;
     }
-
+//TODO Skądś wziąść miasto i dzielnice do RaidForm
     @GetMapping("/district/{district}")
     public String districtGet(@PathVariable("district") String district,
                               Model model) {
         model.addAttribute("user", userService.getUser());
         model.addAttribute("raids", raidRepository.findAllByDistrict(district));
+        model.addAttribute("raidForm", new RaidForm());
+        model.addAttribute("district", district);
         return "district";
     }
 
