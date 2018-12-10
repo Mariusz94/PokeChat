@@ -15,4 +15,6 @@ public class DistrictModel {
     int id;
     String city;
     String district;
+    @Column(name = "district_escape_diacritics_lc")
+    String districtEdLc;
 }

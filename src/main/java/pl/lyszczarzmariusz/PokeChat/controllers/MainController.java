@@ -51,4 +51,11 @@ public class MainController {
         model.addAttribute("districts", districtRepository.findAllByCity(city));
         return "city";
     }
+
+    @GetMapping("/district/{district}")
+    public String districtGet(@PathVariable("district") String district,
+                          Model model){
+
+        return "district";
+    }
 }
