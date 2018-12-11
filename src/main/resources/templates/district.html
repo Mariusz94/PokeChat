@@ -69,8 +69,8 @@
                     <input type="text" th:field="*{district}" placeholder="Dodaj dzielnice"/>
                     <button type="submit">Dodaj</button>
                 </form>-->
-
-                <form  th:action="@{'/district/' + ${district}}" method="post" th:object="${raidForm}">
+                <br/><br/>
+                <form th:action="@{'/district/' + ${district}}" method="post" th:object="${raidForm}">
                     <table>
                         <tr>
                             <td>Miasto</td>
