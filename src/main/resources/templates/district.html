@@ -57,6 +57,7 @@
     <section>
         <article>
             <div>
+                <p>Wybierz raid który Cię interesuje:</p>
 
             <span th:each="raid : ${raids}">
                 <a th:href="'/raid/' + ${raid.getId()}" th:text="${raid.getNameBoss()}"></a>

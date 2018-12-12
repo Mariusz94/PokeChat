@@ -57,6 +57,7 @@
     <section>
         <article>
             <div>
+                <p>Wybierz swoją dzielnice:</p>
 
                 <span th:each="district : ${districts}">
                     <a th:href="'/district/' + ${district.getDistrictEdLc()}" th:text="${district.getDistrict()}"></a>
