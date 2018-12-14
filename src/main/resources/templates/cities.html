@@ -57,7 +57,7 @@
     <section>
         <article>
             <div>
-                <p>Wybierz swoje miasto:</p>
+                <p>Wybierz miasto:</p>
                 <span th:each="city : ${cities}">
             <a th:href="'/city/' + ${city.escapeDiacritics().toLowerCase()}" th:text="${city.getCity()}"></a>
                 <br/>
